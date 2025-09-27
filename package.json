@@ -1,0 +1,81 @@
+{
+	"name": "msvc-project-manager",
+	"displayName": "MSVC Project Manager",
+	"description": "Provide a Visual Studio-like project explorer for MSVC solutions and build via Developer Command Prompt (VS2022)",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.70.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:msvcProjectExplorer",
+		"onCommand:msvcpm.refresh",
+		"onCommand:msvcpm.buildSolution",
+		"onCommand:extension.f5Build"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "MSVC Project Manager",
+			"properties": {
+				"msvcProjectManager.vsDevCmdPath": {
+					"type": "string",
+					"description": "Optional full path to VsDevCmd.bat to override automatic detection",
+					"default": ""
+				},
+				"msvcProjectManager.defaultConfiguration": {
+					"type": "string",
+					"description": "Default build configuration used when building (Debug/Release)",
+					"default": "Debug"
+				},
+				"msvcProjectManager.defaultPlatform": {
+					"type": "string",
+					"description": "Default build platform used when building (x64/x86/ARM64)",
+					"default": "x64"
+				}
+			}
+		}
+	},
+	"menus": {
+		"view/item/context": [
+			{
+				"command": "msvcpm.buildSolution",
+				"when": "view == msvcProjectExplorer",
+				"group": "inline"
+			},
+			{
+				"command": "msvcpm.rebuildSolution",
+				"when": "view == msvcProjectExplorer",
+				"group": "inline"
+			},
+			{
+				"command": "msvcpm.cleanSolution",
+				"when": "view == msvcProjectExplorer",
+				"group": "inline"
+			},
+			{
+				"command": "msvcpm.createLaunch",
+				"when": "view == msvcProjectExplorer",
+				"group": "navigation"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run build",
+		"build": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run build",
+		"test": "node ./out/test/runTest.js"
+	},
+	"dependencies": {
+		"fast-xml-parser": "^5.2.5"
+	},
+	"devDependencies": {
+		"@types/node": "^18.0.0",
+		"@types/vscode": "^1.70.0",
+		"typescript": "^4.9.0"
+	}
+}
