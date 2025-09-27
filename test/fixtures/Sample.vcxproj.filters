@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Sample.cpp">
+      <Filter>UI\\Dialogs</Filter>
+    </ClCompile>
+    <ClInclude Include="Sample.h">
+      <Filter>UI\\Headers</Filter>
+    </ClInclude>
+    <ResourceCompile Include="resource.rc">
+      <Filter>UI\\Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="UI\\Dialogs" />
+    <Filter Include="UI\\Headers" />
+    <Filter Include="UI\\Resources" />
+  </ItemGroup>
+</Project>
